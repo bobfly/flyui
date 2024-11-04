@@ -1,0 +1,22 @@
+<label class="form-control w-full max-w-xs">
+  <div class="label">
+    <span class="label-text"><%= label_text %></span>
+  </div>
+  
+  <% if toggle? %>
+    <!-- Render a checkbox with DaisyUI toggle styles for boolean fields -->
+    <%= @form.check_box @method, class: "toggle toggle-primary", **@options %>
+  <% elsif date_picker? %>
+    <!-- Render a date picker for date fields -->
+    <%= @form.text_field @method, class: classes, placeholder: @placeholder, data: { controller: "flatpickr" }, **@options %>
+  <% elsif date_time_picker? %>
+    <%= @form.text_field @method, class: classes, placeholder: @placeholder, data: { controller: "flatpickr", flatpickr_enable_time: true, flatpickr_date_format: "d-m-Y H:i" }, **@options %>
+  <% else %>
+    <!-- Render a standard input field for other types -->
+    <%= @form.send("#{@type}_field", @method, class: classes, placeholder: @placeholder, **@options) %>
+  <% end %>
+
+  <% if error? %>
+    <span class="text-error text-sm mt-1"><%= error_messages %></span>
+  <% end %>
+</label>

@@ -1,0 +1,16 @@
+
+<!-- Page Title -->
+<h1 class="page-title">Dummies List</h1>
+<p class="page-subtitle">Browse the list of dummies below, or create a new one.</p>
+
+<!-- New Button -->
+<div class="flex justify-end mb-6">
+  <%= link_to "New Dummy", new_dummy_path, class: "btn btn-primary" %>
+</div>
+
+<!-- Dummy Items -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <% @dummies.each do |dummy| %>
+    <%= render Cards::DummyComponent.new(dummy: dummy) %>
+  <% end %>
+</div>

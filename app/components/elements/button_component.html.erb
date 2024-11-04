@@ -1,0 +1,5 @@
+<% if @is_disabled == true %>
+  <%= link_to @title, @url, class: "btn #{button_classes}", disabled: @disabled %>
+<% else %>
+  <%= link_to @title, @url, class: "btn #{button_classes}" %>
+<% end %>

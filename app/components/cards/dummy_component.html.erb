@@ -1,0 +1,56 @@
+<div class="card bg-white dark:bg-gray-800 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 max-w-full mx-2 mb-6">
+  <div class="card-body p-6">
+    <!-- Card Header -->
+    <h2 class="card-title text-lg font-bold text-gray-800 dark:text-gray-100 border-b border-gray-100 dark:border-gray-700 pb-4 mb-4">
+      <%= @dummy.name %>
+    </h2>
+
+    <!-- Card Content -->
+    <dl class="space-y-4">
+      <!-- Started At -->
+      <div class="flex justify-between items-center">
+        <dt class="text-sm font-medium text-gray-600 dark:text-gray-400">
+          <%= Dummy.human_attribute_name(:started_at) %>
+        </dt>
+        <dd class="text-sm text-gray-900 dark:text-gray-200">
+          <%= formatted_started_at %>
+        </dd>
+      </div>
+
+      <!-- Completed At -->
+      <div class="flex justify-between items-center">
+        <dt class="text-sm font-medium text-gray-600 dark:text-gray-400">
+          <%= Dummy.human_attribute_name(:completed_at) %>
+        </dt>
+        <dd class="text-sm text-gray-900 dark:text-gray-200">
+          <%= formatted_completed_at %>
+        </dd>
+      </div>
+
+      <!-- Active Status -->
+      <div class="flex justify-between items-center">
+        <dt class="text-sm font-medium text-gray-600 dark:text-gray-400">
+          <%= Dummy.human_attribute_name(:active) %>
+        </dt>
+        <dd class="text-sm text-gray-900 dark:text-gray-200">
+          <%= active_status %>
+        </dd>
+      </div>
+
+      <!-- Status -->
+      <div class="flex justify-between items-center">
+        <dt class="text-sm font-medium text-gray-600 dark:text-gray-400">
+          <%= Dummy.human_attribute_name(:status) %>
+        </dt>
+        <dd class="text-sm text-gray-900 dark:text-gray-200">
+          <%= status_text %>
+        </dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- Card Actions -->
+  <div class="card-actions flex justify-end p-4 border-t border-gray-100 dark:border-gray-700">
+    <%= render Elements::ButtonComponent.new(title: "Edit", url: edit_dummy_path(@dummy), as: :secondary, size: :md, outline: true) %>
+  </div>
+</div>

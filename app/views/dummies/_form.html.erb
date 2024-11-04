@@ -1,0 +1,9 @@
+<%= form_with(model: @dummy) do |f| %>
+  <%= f.input :name, type: :text, placeholder: 'please enter name' %>
+  <%= f.input :started_at, type: :date %>
+  <%= f.input :completed_at, type: :datetime %>
+  <%= f.input :active, type: :boolean %>
+  <%= f.input :status %>
+
+  <%= f.submit "Save" %>
+<% end %>

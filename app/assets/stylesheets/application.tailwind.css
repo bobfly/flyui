@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.page-title {
+  @apply text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6;
+}
+
+.page-subtitle {
+  @apply text-gray-600 dark:text-gray-400 mb-8;
+}
+
+
+/* FLATPICKR */
+/* Flatpickr input field styling */
+.flatpickr-input {
+  @apply input input-bordered w-full;
+}
+
+/* Flatpickr calendar styling */
+.flatpickr-calendar {
+  @apply bg-base-100 dark:bg-base-200 border border-base-300 shadow-lg rounded-lg text-base-content;
+}
+
+/* Month and year navigation centered */
+.flatpickr-months {
+  @apply flex items-center justify-center mb-2;
+}
+
+.flatpickr-months .flatpickr-month {
+  @apply text-lg font-semibold text-base-content;
+}
+
+/* Navigation arrows */
+.flatpickr-prev-month, .flatpickr-next-month {
+  @apply text-lg text-base-content opacity-75 hover:opacity-100 cursor-pointer;
+}
+
+.flatpickr-prev-month svg, .flatpickr-next-month svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Days grid layout */
+.flatpickr-days {
+  @apply grid grid-cols-7 gap-1 px-2 pb-2;
+}
+
+.flatpickr-day {
+  @apply w-9 h-9 flex items-center justify-center rounded-lg cursor-pointer text-base-content;
+}
+
+/* Day hover effect */
+.flatpickr-day:hover {
+  @apply bg-base-200;
+}
+
+/* Selected day styling */
+.flatpickr-day.selected, .flatpickr-day.today {
+  @apply bg-primary text-primary-content font-semibold;
+}
+
+/* Disabled days */
+.flatpickr-day.disabled {
+  @apply text-base-300 cursor-not-allowed;
+}
+
+/* Today button */
+.flatpickr-current-month {
+  @apply text-lg font-semibold text-base-content;
+}

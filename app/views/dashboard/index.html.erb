@@ -1,0 +1,37 @@
+<h1>Dashboard#index</h1>
+<p>Find me in app/views/dashboard/index.html.erb</p>
+
+<%= render Cards::CardComponent.new(as: :primary, title: 'Card Title') do |card| %>
+  <% card.with_body_content do %>
+    <p>This is my custom card description</p>
+  <% end %>
+  <% card.with_actions do %>
+    <%= render Elements::ButtonComponent.new(title: "Buy now", as: :secondary, size: :md, outline: true) %>
+  <% end %>
+<% end %>
+
+<%= render Cards::CardComponent.new(as: :secondary, title: 'Pero') do |card| %>
+  <% card.with_body_content do %>
+    <p>Pero description</p>
+  <% end %>
+<% end %>
+
+<%= render Cards::CardComponent.new(title: 'Basic card') do |card| %>
+  <% card.with_actions do %>
+    <button class="btn btn-ghost">Basic btn</button>
+  <% end %>
+<% end %>
+
+<label class="form-control w-full max-w-xs">
+  <div class="label">
+    <span class="label-text">What is your name?</span>
+  </div>
+  <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+</label>
+
+<label class="form-control w-full max-w-xs">
+  <div class="label">
+    <span class="label-text">What is your name?</span>
+  </div>
+  <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+</label>

@@ -1,0 +1,19 @@
+<div class="card <%= card_classes %> w-96">
+  <div class="card-body">
+    <% if @title.present? %>
+      <h2 class="card-title"><%= @title %></h2>
+    <% end %>
+
+    <% if body_content %>
+      <div class="card-content">
+        <%= body_content %>
+      </div>
+    <% end %>
+
+    <% if actions %>
+      <div class="card-actions justify-end">
+        <%= actions %>
+      </div>
+    <% end %>
+  </div>
+</div>
