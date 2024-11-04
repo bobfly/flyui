@@ -10,3 +10,6 @@ application.register("hello", HelloController)
 import Flatpickr from 'stimulus-flatpickr'
 application.register("flatpickr", Flatpickr)
 
+import ToastController from "./toast_controller"
+application.register("toast", ToastController)
+

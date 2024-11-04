@@ -55,6 +55,9 @@
     </div>
     <!-- Page content here -->
     <div class="container mx-auto mx-2 p-2">
+      <% flash.each do |type, message| %>
+        <%= render Elements::ToastComponent.new(message: message, status: type) %>
+      <% end %>
       <%= yield %>
     </div>
   </div>
