@@ -9,7 +9,7 @@
 </div>
 
  <div class="mb-6" data-controller="collapsible">
-  <%= search_form_for @q, url: dummies_path, method: :get, class: "space-y-4", data: { turbo_frame: "results" } do |f| %>
+  <%= search_form_for @q, url: dummies_path, method: :get, class: "space-y-4", data: { turbo_frame: "results", search_form: true } do |f| %>
     <!-- Always Visible Filters -->
     <!-- Search Field and Buttons -->
       <div class="flex items-start gap-4">
@@ -20,7 +20,7 @@
         </div>
 
         <!-- Button Group for Search and More Filters -->
-        <div class="flex items-start gap-2 mt-5">
+        <div class="flex items-start gap-2 mt-6">
           <div class="btn-group flex">
             <%= f.submit class: "btn btn-primary rounded-r-none" do %>
                <i data-lucide="search" class="w-4 h-4"></i>

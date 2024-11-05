@@ -15,3 +15,23 @@ document.addEventListener("DOMContentLoaded", initializeIcons);
 document.addEventListener("turbo:load", initializeIcons);
 document.addEventListener("turbo:frame-render", initializeIcons);
 document.addEventListener("turbo:render", initializeIcons);
+
+document.addEventListener("turbo:submit-end", (event) => {
+  // Check if the form submission was successful and if it’s the search form
+  if (event.detail.success && event.target.matches("[data-search-form='true']")) {
+    const url = new URL(window.location);
+    const formData = new FormData(event.target);
+
+    // Update the URL with search parameters
+    for (const [key, value] of formData.entries()) {
+      if (value) {
+        url.searchParams.set(key, value);
+      } else {
+        url.searchParams.delete(key);
+      }
+    }
+
+    // Replace the current history state with the new URL
+    window.history.replaceState({}, "", url);
+  }
+});

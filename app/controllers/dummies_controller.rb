@@ -47,7 +47,7 @@ class DummiesController < ApplicationController
   def find_filters_count
     return @filter_count = 0 if params[:q].blank?
 
-    permitted_params = params.require(:q).permit(:name_cont, :status_eq, :active_eq, :created_at_gteq, :created_at_lteq)
+    permitted_params = params.require(:q).permit(:name_cont, :status_eq, :active_eq, :date_range)
     @filter_count = permitted_params.to_h.reject { |_, value| value.blank? }.count
   end
 
