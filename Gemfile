@@ -66,6 +66,8 @@ end
 
 gem "view_component", "~> 3.20"
 
-gem "phlex", "~> 1.11"
-
+# translatable enums
 gem "enumerize", "~> 2.8"
+# Filters and pagination
+gem "ransack", "~> 4.2"
+gem "pagy", "~> 9.1"

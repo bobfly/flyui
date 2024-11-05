@@ -8,9 +8,74 @@
   <%= link_to "New Dummy", new_dummy_path, class: "btn btn-primary" %>
 </div>
 
-<!-- Dummy Items -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-  <% @dummies.each do |dummy| %>
-    <%= render Cards::DummyComponent.new(dummy: dummy) %>
+ <div class="mb-6" data-controller="collapsible">
+  <%= search_form_for @q, url: dummies_path, method: :get, class: "space-y-4", data: { turbo_frame: "results" } do |f| %>
+    <!-- Always Visible Filters -->
+    <!-- Search Field and Buttons -->
+      <div class="flex items-start gap-4">
+        <!-- Search Field -->
+        <div class="flex-1">
+          <%= f.label :name_cont, "Name", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.search_field :name_cont, placeholder: "Search by name", class: "input input-bordered w-full" %>
+        </div>
+
+        <!-- Button Group for Search and More Filters -->
+        <div class="flex items-start gap-2 mt-5">
+          <div class="btn-group flex">
+            <%= f.submit class: "btn btn-primary rounded-r-none" do %>
+               <i data-lucide="search" class="w-4 h-4"></i>
+            <% end %>
+            <button type="button" class="btn btn-outline rounded-l-none" data-action="collapsible#toggle">
+              <i data-lucide="chevron-down" class="w-4 h-4" data-collapsible-target="icon"></i>
+            </button>
+          </div>
+
+          <!-- Reset Button -->
+          <%= link_to dummies_path, class: "btn btn-secondary" do %>
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+          <% end %>
+        </div>
+      </div>
+
+    <!-- Collapsible Additional Filters -->
+    <div class="hidden mt-4" data-collapsible-target="content">
+      <div class="flex gap-4">
+        <div class="flex-1">
+          <%= date_range_filter(f, start_field: :started_at_gteq, end_field: :started_at_lteq) %>
+        </div>
+
+        <div class="flex-1">
+          <%= f.label :status_eq, class: 'block text-sm font-medium text-gray-700' %>
+          <%= f.select :status_eq, Dummy.status.values.map { |status| [status.text, status.value] }, 
+                       { include_blank: "All Statuses" }, 
+                       { class: "select select-bordered w-full" } %>
+        </div>
+
+        <div class="flex-1">
+          <%= f.label :active_eq, "Active?", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.select :active_eq, [["Yes", true], ["No", false]], 
+                       { include_blank: "Both" }, 
+                       { class: "select select-bordered w-full" } %>
+        </div>
+
+      </div>
+    </div>
   <% end %>
 </div>
+
+
+<!-- Dummy Items -->
+<%= turbo_frame_tag "results" do %>
+  <div class="flex justify-start mb-2 me-2">
+    <%== pagy_info(@pagy) %>
+    <span class="text-sm text-gray-500 ml-1">with <%= @filter_count %> <%= 'filter'.pluralize(@filter_count) %> applied</span>      
+  </div>  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <% @dummies.each do |dummy| %>
+      <%= render Cards::DummyComponent.new(dummy: dummy) %>
+    <% end %>
+  </div>
+  <div class="flex justify-center mt-8">
+    <%== pagy_nav(@pagy) %>
+  </div>
+<% end %>

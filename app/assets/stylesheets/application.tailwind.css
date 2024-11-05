@@ -69,3 +69,48 @@
 .flatpickr-current-month {
   @apply text-lg font-semibold text-base-content;
 }
+
+
+/* PAGY */
+.pagy {
+  @apply inline-flex font-semibold text-sm text-gray-500; /* No extra space between buttons */
+
+  a:not(.gap) {
+    @apply btn btn-sm bg-gray-200 text-gray-800 hover:bg-gray-300 border-none px-4 py-1 m-0;
+
+    &:hover {
+      @apply bg-gray-300;
+    }
+
+    &:not([href]) { /* Disabled links */
+      @apply btn-disabled text-gray-300 bg-gray-100 cursor-default;
+    }
+
+    &.current {
+      @apply text-white bg-primary;
+    }
+  }
+
+  /* Apply rounded corners only to the left side of the first button */
+  a:first-child:not(.gap) {
+    @apply rounded-l-lg rounded-r-none;
+  }
+
+  /* Apply rounded corners only to the right side of the last button */
+  a:last-child:not(.gap) {
+    @apply rounded-r-lg rounded-l-none;
+  }
+
+  /* Remove rounding from middle buttons */
+  a:not(:first-child):not(:last-child):not(.gap) {
+    @apply rounded-none;
+  }
+
+  label {
+    @apply inline-block whitespace-nowrap bg-gray-200 rounded-lg px-3 py-0.5;
+
+    input {
+      @apply input input-bordered input-sm bg-gray-100 border-none rounded-md;
+    }
+  }
+}

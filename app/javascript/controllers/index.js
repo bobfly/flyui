@@ -4,6 +4,12 @@
 
 import { application } from "./application"
 
+import CollapsibleController from "./collapsible_controller"
+application.register("collapsible", CollapsibleController)
+
+import DateRangeController from "./date_range_controller"
+application.register("date-range", DateRangeController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

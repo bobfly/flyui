@@ -1,7 +1,10 @@
 class DummiesController < ApplicationController
   before_action :find_dummy, only: %i[edit update show destroy]
+  before_action :find_filters_count, only: %i[index]
+
   def index
-    @dummies = Dummy.all
+    @q = Dummy.ransack(params[:q])
+    @pagy, @dummies = pagy(@q.result.distinct)
   end
 
   def new
@@ -39,6 +42,13 @@ class DummiesController < ApplicationController
 
   def find_dummy
     @dummy = Dummy.find(params[:id])
+  end
+
+  def find_filters_count
+    return @filter_count = 0 if params[:q].blank?
+
+    permitted_params = params.require(:q).permit(:name_cont, :status_eq, :active_eq, :created_at_gteq, :created_at_lteq)
+    @filter_count = permitted_params.to_h.reject { |_, value| value.blank? }.count
   end
 
   def dummy_params

@@ -18,7 +18,7 @@ module.exports = {
     require('@tailwindcss/forms')({
       strategy: 'class', // Only apply form styles when the `form` class is present
     }),
-    require('tailwindcss-motion'),
+    require("tailwindcss-motion"),
     require('daisyui')
   ],
   daisyui: {
