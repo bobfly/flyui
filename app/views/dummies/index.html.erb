@@ -63,14 +63,13 @@
   <% end %>
 </div>
 
-
 <!-- Dummy Items -->
 <%= turbo_frame_tag "results" do %>
   <div class="flex justify-start mb-2 me-2">
     <%== pagy_info(@pagy) %>
     <span class="text-sm text-gray-500 ml-1">with <%= @filter_count %> <%= 'filter'.pluralize(@filter_count) %> applied</span>      
   </div>  
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-2">
     <% @dummies.each do |dummy| %>
       <%= render Cards::DummyComponent.new(dummy: dummy) %>
     <% end %>

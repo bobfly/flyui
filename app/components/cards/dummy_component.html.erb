@@ -1,3 +1,4 @@
+<% if layout == :compact %>
 <div class="card bg-white dark:bg-gray-800 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 max-w-full mx-2 mb-6">
   <div class="card-body p-6">
     <!-- Card Header -->
@@ -54,3 +55,34 @@
     <%= render Elements::ButtonComponent.new(title: "Edit", url: edit_dummy_path(@dummy), as: :secondary, size: :md, outline: true) %>
   </div>
 </div>
+<% else %>
+  <div class="card bg-white dark:bg-gray-800 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 w-full">
+    <div class="card-body p-2">
+      <!-- Card Content in Columns for Sorting -->
+      <div class="grid grid-cols-6 gap-4 text-sm text-gray-900 dark:text-gray-200 items-center">
+        <!-- Attribute Columns without Labels -->
+        <div>
+          <%= @dummy.name %>
+        </div>
+        <div>
+          <%= formatted_started_at %>
+        </div>
+        <div>
+          <%= formatted_completed_at %>
+        </div>
+        <div>
+          <%= active_status %>
+        </div>
+        <div>
+          <%= status_text %>
+        </div>
+
+        <!-- Edit Button in the Last Column -->
+        <div class="text-right">
+          <%= render Elements::ButtonComponent.new(title: "Edit", url: edit_dummy_path(@dummy), as: :secondary, size: :sm, outline: true) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>

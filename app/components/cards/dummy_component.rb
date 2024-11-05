@@ -3,8 +3,9 @@
 module Cards
   class DummyComponent < ViewComponent::Base
     # Expose the dummy object to the template
-    def initialize(dummy:)
+    def initialize(dummy:, layout: :full)
       @dummy = dummy
+      @layout = layout
     end
 
     # Helper methods for display logic
@@ -23,5 +24,9 @@ module Cards
     def status_text
       @dummy.status_text
     end
+
+    private
+
+    attr_reader :layout
   end
 end
