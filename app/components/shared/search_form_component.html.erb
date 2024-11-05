@@ -1,0 +1,48 @@
+<div class="mb-6" data-controller="collapsible">
+  <%= search_form_for @form, url: @search_path, method: :get, class: "space-y-4", data: { turbo_frame: "results", search_form: true } do |f| %>
+    <!-- Main Search Field -->
+    <div class="flex items-start gap-4">
+      <div class="flex-1">
+        <%= f.label @main_filter[:field], @main_filter[:label], class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= f.search_field @main_filter[:field], placeholder: @main_filter[:placeholder], class: "input input-bordered w-full" %>
+      </div>
+
+      <!-- Button Group for Search and More Filters -->
+      <div class="flex items-start gap-2 mt-6">
+        <div class="btn-group flex">
+          <%= f.submit class: "btn btn-primary rounded-r-none" do %>
+            <i data-lucide="search" class="w-4 h-4"></i>
+          <% end %>
+          <button type="button" class="btn btn-outline rounded-l-none" data-action="collapsible#toggle">
+            <i data-lucide="chevron-down" class="w-4 h-4" data-collapsible-target="icon"></i>
+          </button>
+        </div>
+
+        <!-- Reset Button -->
+        <%= link_to @search_path, class: "btn btn-secondary" do %>
+          <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Collapsible Additional Filters -->
+    <div class="hidden mt-4" data-collapsible-target="content">
+      <div class="flex gap-4">
+        <% @additional_filters.each do |filter| %>
+          <div class="flex-1">
+            <% if filter[:type] == :date_range %>
+              <label class="block text-sm font-medium text-gray-700"><%= filter[:label] %></label>
+              <%= helpers.date_range_filter(f, start_field: filter[:start_field], end_field: filter[:end_field]) %>
+            <% elsif filter[:type] == :select %>
+              <%= f.label filter[:field], filter[:label], class: 'block text-sm font-medium text-gray-700' %>
+              <%= f.select filter[:field], filter[:options], { include_blank: filter[:include_blank] }, class: "select select-bordered w-full" %>
+            <% elsif filter[:type] == :boolean %>
+              <%= f.label filter[:field], filter[:label], class: 'block text-sm font-medium text-gray-700' %>
+              <%= f.select filter[:field], [["Yes", true], ["No", false]], { include_blank: "Both" }, class: "select select-bordered w-full" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
