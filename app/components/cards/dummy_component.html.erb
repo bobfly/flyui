@@ -52,37 +52,40 @@
 
   <!-- Card Actions -->
   <div class="card-actions flex justify-end p-4 border-t border-gray-100 dark:border-gray-700">
-    <%= render Elements::ButtonComponent.new(title: "Edit", url: edit_dummy_path(@dummy), as: :secondary, size: :md, outline: true) %>
+    <%= link_to "Edit", edit_dummy_path(@dummy), class: 'btn btn-secondary btn-md btn-outline', data: { turbo_frame: dom_id(@dummy) } %>
+    <%#= render Elements::ButtonComponent.new(title: "Edit", url: edit_dummy_path(@dummy), as: :secondary, size: :md, outline: true, data: { turbo_frame: dom_id(@dummy) }) %>
   </div>
 </div>
 <% else %>
-  <div class="card bg-white dark:bg-gray-800 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 w-full">
-    <div class="card-body p-2">
-      <!-- Card Content in Columns for Sorting -->
-      <div class="grid grid-cols-6 gap-4 text-sm text-gray-900 dark:text-gray-200 items-center">
-        <!-- Attribute Columns without Labels -->
-        <div>
-          <%= @dummy.name %>
-        </div>
-        <div>
-          <%= formatted_started_at %>
-        </div>
-        <div>
-          <%= formatted_completed_at %>
-        </div>
-        <div>
-          <%= active_status %>
-        </div>
-        <div>
-          <%= status_text %>
-        </div>
+  <%= turbo_frame_tag dom_id(@dummy) do %>
+    <div class="card bg-white dark:bg-gray-800 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 w-full">
+      <div class="card-body p-2">
+        <!-- Card Content in Columns for Sorting -->
+        <div class="grid grid-cols-6 gap-4 text-sm text-gray-900 dark:text-gray-200 items-center">
+          <!-- Attribute Columns without Labels -->
+          <div>
+            <%= @dummy.name %>
+          </div>
+          <div>
+            <%= formatted_started_at %>
+          </div>
+          <div>
+            <%= formatted_completed_at %>
+          </div>
+          <div>
+            <%= active_status %>
+          </div>
+          <div>
+            <%= status_text %>
+          </div>
 
-        <!-- Edit Button in the Last Column -->
-        <div class="text-right">
-          <%= render Elements::ButtonComponent.new(title: "Edit", url: edit_dummy_path(@dummy), as: :secondary, size: :sm, outline: true) %>
-        </div>
+          <!-- Edit Button in the Last Column -->
+          <div class="text-right">
+            <%= link_to "Edit", edit_dummy_path(@dummy), class: 'btn btn-secondary btn-sm btn-outline', data: { turbo_frame: dom_id(@dummy) } %>
+            <%#= render Elements::ButtonComponent.new(title: "Edit", url: edit_dummy_path(@dummy), as: :secondary, size: :sm, outline: true, data: { turbo_frame: dom_id(@dummy) }) %>
+          </div>
+        </div>      
       </div>
     </div>
-  </div>
-
+  <% end %>
 <% end %>

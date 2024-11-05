@@ -54,12 +54,15 @@
       </div>
     </div>
     <!-- Page content here -->
-    <div class="container mx-auto mx-2 p-2">
-      <% flash.each do |type, message| %>
-        <%= render Elements::ToastComponent.new(message: message, status: type) %>
+    <main class="container mx-auto mx-2 p-2">
+      <%= turbo_frame_tag "flash_messages" do %>
+        <% flash.each do |type, message| %>
+          <%= render Elements::ToastComponent.new(message: message, status: type) %>
+        <% end %>
       <% end %>
+      
       <%= yield %>
-    </div>
+    </main>
   </div>
   <div class="drawer-side">
     <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>

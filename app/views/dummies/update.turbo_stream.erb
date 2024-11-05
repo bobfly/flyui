@@ -1,0 +1,12 @@
+<% if @dummy.errors.empty? %>
+  <%= turbo_stream.replace dom_id(@dummy) do %>
+    <%= render Cards::DummyComponent.new(dummy: @dummy) %>
+  <% end %>
+  <%= turbo_stream.replace "flash_messages" do %>
+    <%= render Elements::ToastComponent.new(message: "Dummy was successfully updated.", status: 'notice') %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.replace dom_id(@dummy) do %>
+    <%= render partial: 'form' %>
+  <% end %>
+<% end %>

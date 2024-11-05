@@ -1,0 +1,4 @@
+<% if @dummy.errors.blank? %>
+  <%= turbo_stream.append("dummies_list", partial: "dummies/dummy", locals: { dummy: @dummy }) %>
+  <%= turbo_stream.replace("new_dummy_form", partial: "shared/empty") %>
+<% end %>

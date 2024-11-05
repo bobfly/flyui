@@ -2,6 +2,7 @@
 
 module Cards
   class DummyComponent < ViewComponent::Base
+    include Turbo::FramesHelper
     # Expose the dummy object to the template
     def initialize(dummy:, layout: :full)
       @dummy = dummy

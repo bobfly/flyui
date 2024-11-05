@@ -1,24 +1,30 @@
 class DummiesController < BaseController
   def create
-    @resource = Dummy.new(dummy_params)
+    @dummy = Dummy.new(dummy_params)
 
-    if @resource.save
-      redirect_to dummies_path
+    if @dummy.save
+      respond_to do |format|
+        format.html { redirect_to dummies_path, notice: "Dummy created successfully" }
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
-    if @resource.update(dummy_params)
-      redirect_to dummies_path, notice: "Dummy updated successfully"
+    if @dummy.update(dummy_params)
+      respond_to do |format|
+        # format.html { redirect_to dummies_path }
+        format.turbo_stream
+      end
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @resource.destroy
+    @dummy.destroy
     redirect_to dummies_path
   end
 

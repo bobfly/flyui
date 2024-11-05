@@ -5,7 +5,11 @@
 
 <!-- New Button -->
 <div class="flex justify-end mb-6">
-  <%= link_to "New Dummy", new_dummy_path, class: "btn btn-primary" %>
+  <%= link_to "New Dummy", new_dummy_path, class: "btn btn-primary", data: { turbo_frame: 'new_dummy_form' } %>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-2">
+  <%= turbo_frame_tag 'new_dummy_form' %>
 </div>
 
  <%= render Shared::SearchFormComponent.new(
@@ -36,10 +40,8 @@
     </div>
   </div>
 </div>
-  <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-2">
-    <% @dummies.each do |dummy| %>
-      <%= render Cards::DummyComponent.new(dummy: dummy) %>
-    <% end %>
+  <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-2" id="dummies_list">
+    <%= render @dummies %>
   </div>
   <div class="flex justify-center mt-8">
     <%== pagy_nav(@pagy) %>

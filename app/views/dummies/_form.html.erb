@@ -1,9 +1,14 @@
-<%= form_with(model: @dummy) do |f| %>
-  <%= f.input :name, type: :text, placeholder: 'please enter name' %>
-  <%= f.input :started_at, type: :date %>
-  <%= f.input :completed_at, type: :datetime %>
-  <%= f.input :active, type: :boolean %>
-  <%= f.input :status %>
-
-  <%= f.submit "Save" %>
-<% end %>
+<div class="card bg-white dark:bg-gray-800 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 w-full">
+  <div class="card-body p-2">
+    <%= form_with(model: @dummy) do |f| %>
+      <div class="grid grid-cols-6 gap-4 text-sm text-gray-900 dark:text-gray-200 items-center">
+        <div><%= f.input :name, type: :text, placeholder: 'please enter name' %></div>
+        <div><%= f.input :started_at, type: :date %></div>
+        <div><%= f.input :completed_at, type: :datetime %></div>
+        <div><%= f.input :active, type: :boolean %></div>
+        <div><%= f.input :status %></div>
+      </div>
+      <%= f.submit "Save", class: 'btn btn-primary mt-2' %>
+    <% end %>
+  </div>
+</div>
