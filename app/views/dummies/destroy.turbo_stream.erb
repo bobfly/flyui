@@ -1,0 +1,4 @@
+<%= turbo_stream.remove dom_id(@dummy) %>
+<%= turbo_stream.replace "flash_messages" do %>
+  <%= render Elements::ToastComponent.new(message: "Dummy was successfully deleted.", status: 'notice') %>
+<% end %>

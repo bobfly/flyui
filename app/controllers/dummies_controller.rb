@@ -25,7 +25,9 @@ class DummiesController < BaseController
 
   def destroy
     @dummy.destroy
-    redirect_to dummies_path
+    respond_to do |format|
+      format.turbo_stream
+    end
   end
 
   private

@@ -55,6 +55,7 @@
     </div>
     <!-- Page content here -->
     <main class="container mx-auto mx-2 p-2">
+      <%= render "shared/confirm_dialog" %>
       <%= turbo_frame_tag "flash_messages" do %>
         <% flash.each do |type, message| %>
           <%= render Elements::ToastComponent.new(message: message, status: type) %>

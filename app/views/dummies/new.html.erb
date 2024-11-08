@@ -1,4 +1,8 @@
 <%= turbo_frame_tag "new_dummy_form" do %>
-  <h1 class="page-title">New Dummy</h1>
-  <%= render 'form' %>
+  <div data-controller="edit">
+    <div data-edit-target="form">
+      <h1 class="page-title">New Dummy</h1>    
+        <%= render Cards::DummyFormComponent.new(dummy: @dummy) %>    
+    </div>
+  </div>
 <% end %>

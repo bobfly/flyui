@@ -10,6 +10,9 @@ application.register("collapsible", CollapsibleController)
 import DateRangeController from "./date_range_controller"
 application.register("date-range", DateRangeController)
 
+import EditController from "./edit_controller"
+application.register("edit", EditController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

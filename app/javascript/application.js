@@ -1,6 +1,6 @@
 // Entry point for the build script in your package.json
-import "@hotwired/turbo-rails"
-import "./controllers"
+import "@hotwired/turbo-rails";
+import "./controllers";
 import { createIcons, icons } from "lucide";
 
 // Function to initialize icons
@@ -16,6 +16,7 @@ document.addEventListener("turbo:load", initializeIcons);
 document.addEventListener("turbo:frame-render", initializeIcons);
 document.addEventListener("turbo:render", initializeIcons);
 
+// Update the URL with search parameters when the search form is submitted
 document.addEventListener("turbo:submit-end", (event) => {
   // Check if the form submission was successful and if it’s the search form
   if (event.detail.success && event.target.matches("[data-search-form='true']")) {
