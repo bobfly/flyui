@@ -1,0 +1,7 @@
+en:
+  pages:
+    dummies:
+      new:
+        title: "New Dummy"
+      edit:
+        title: "Edit Dummy"
