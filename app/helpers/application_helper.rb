@@ -1,8 +1,6 @@
 module ApplicationHelper
   include Pagy::Frontend
 
-
-
   def date_range_filter(form, start_field:, end_field:, placeholder: "Select date range")
     date_range_value = ""
 

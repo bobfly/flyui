@@ -10,6 +10,9 @@ application.register("collapsible", CollapsibleController)
 import DateRangeController from "./date_range_controller"
 application.register("date-range", DateRangeController)
 
+import DropdownSearchComponent from "./dropdown_search_component"
+application.register("dropdown-search", DropdownSearchComponent)
+
 import EditController from "./edit_controller"
 application.register("edit", EditController)
 

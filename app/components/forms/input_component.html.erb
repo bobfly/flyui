@@ -11,6 +11,37 @@
     <%= @form.text_field @method, class: classes, placeholder: @placeholder, data: { controller: "flatpickr" }, **@options %>
   <% elsif date_time_picker? %>
     <%= @form.text_field @method, class: classes, placeholder: @placeholder, data: { controller: "flatpickr", flatpickr_enable_time: true, flatpickr_date_format: "d-m-Y H:i" }, **@options %>
+  <% elsif dropdown? %>
+    <!-- Render the dropdown-search field -->
+    <div data-controller="dropdown-search"
+         data-dropdown-search-fetch-url-value="<%= @fetch_url %>"
+         data-dropdown-search-create-url-value="<%= @create_url %>"
+         data-param-name="<%= @param_name %>"
+         data-initial-name="<%= @initial_name %>"
+         class="relative">
+      
+      <!-- Input field -->
+      <%= text_field_tag "#{@method}_name", "", 
+            class: classes, 
+            placeholder: @placeholder,
+            data: { 'dropdown-search-target': "input", action: "input->dropdown-search#search" } %>
+      
+      <!-- Hidden field -->
+      <%= @form.hidden_field @method, 
+            data: { 'dropdown-search-target': "hiddenField" } %>
+      
+      <!-- Dropdown container -->
+      <ul data-dropdown-search-target="list"
+          class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-full max-h-60 overflow-auto hidden">
+      </ul>
+    </div>
+  <% elsif simple_dropdown? %>
+    <!-- Render a simple static dropdown -->
+    <%= @form.select @method, @enum, 
+          { include_blank: true }, 
+          class: classes, 
+          placeholder: @placeholder, 
+          **@options %>
   <% else %>
     <!-- Render a standard input field for other types -->
     <%= @form.send("#{@type}_field", @method, class: classes, placeholder: @placeholder, **@options) %>

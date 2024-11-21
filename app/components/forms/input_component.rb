@@ -1,10 +1,15 @@
 module Forms
   class InputComponent < ViewComponent::Base
-    def initialize(form:, method:, type: :text, placeholder: nil, **options)
+    def initialize(form:, method:, type: :text, placeholder: nil, fetch_url: nil, create_url: nil, param_name: nil, enum: nil, initial_name: nil, **options)
       @form = form
       @method = method
       @type = type
       @placeholder = placeholder
+      @fetch_url = fetch_url
+      @create_url = create_url
+      @param_name = param_name
+      @enum = enum
+      @initial_name = initial_name
       @options = options
     end
 
@@ -35,6 +40,14 @@ module Forms
 
     def date_time_picker?
       @type == :datetime
+    end
+
+    def dropdown?
+      @type == :dropdown
+    end
+
+    def simple_dropdown?
+      @type == :simple_dropdown
     end
   end
 end
